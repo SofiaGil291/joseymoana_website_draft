@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanctuary Draft | Rescuing & Rehabilitating Dogs</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Fraunces (warm editorial serif) & Plus Jakarta Sans (clean friendly sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for clean icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Fraunces"', 'serif'],
+                    },
+                    colors: {
+                        cream: '#FAF6F0',
+                        sand: '#F2EAE0',
+                        terracotta: {
+                            DEFAULT: '#C86D51',
+                            dark: '#AE583E',
+                            light: '#F7E7E2'
+                        },
+                        sage: {
+                            DEFAULT: '#5C7650',
+                            dark: '#475D3E',
+                            light: '#E7EDE4'
+                        },
+                        charcoal: '#2C2A29',
+                        warmgray: '#6E6863'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-cream text-charcoal font-sans antialiased selection:bg-terracotta selection:text-white">
+
+    <!-- Draft Banner for easy context when sharing -->
+    <div class="bg-charcoal text-cream text-xs sm:text-sm py-2 px-4 text-center flex flex-wrap items-center justify-center gap-2">
+        <span class="bg-terracotta text-white px-2 py-0.5 rounded-full font-semibold text-[11px] uppercase tracking-wider" data-i18n="draft_badge">Website Concept Draft</span>
+        <span data-i18n="draft_note">Placeholder names, photos & amounts — customizable with your real stories & links!</span>
+    </div>
+
+    <!-- 1. Header & Navigation -->
+    <header class="sticky top-0 z-40 bg-cream/95 backdrop-blur-md border-b border-sand">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            <!-- Brand / Handle Placeholder -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-2xl bg-terracotta text-white flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-paw text-lg"></i>
+                </div>
+                <div>
+                    <span class="font-serif font-bold text-lg sm:text-xl tracking-tight text-charcoal block leading-none" data-i18n="brand_name">[Sanctuary Name]</span>
+                    <span class="text-xs font-medium text-terracotta block mt-0.5">@YourInstagramHandle</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-charcoal/80">
+                <a href="#mission" class="hover:text-terracotta transition-colors" data-i18n="nav_mission">Our Mission</a>
+                <a href="#adopt" class="hover:text-terracotta transition-colors" data-i18n="nav_adopt">Dogs for Adoption</a>
+                <a href="#sanctuary" class="hover:text-terracotta transition-colors" data-i18n="nav_sanctuary">Build the Sanctuary</a>
+                <a href="#support" class="hover:text-terracotta transition-colors" data-i18n="nav_support">Support</a>
+            </nav>
+
+            <!-- Language Toggle & Mobile Menu Button -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <!-- EN / ES Toggle Pill -->
+                <div class="bg-sand p-1 rounded-full flex items-center border border-charcoal/10" role="group" aria-label="Language Switcher">
+                    <button id="btn-en" onclick="setLanguage('en')" class="px-3 py-1.5 rounded-full text-xs font-bold transition-all bg-charcoal text-cream shadow-sm">
+                        EN
+                    </button>
+                    <button id="btn-es" onclick="setLanguage('es')" class="px-3 py-1.5 rounded-full text-xs font-bold transition-all text-warmgray hover:text-charcoal">
+                        ES
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl bg-sand text-charcoal hover:bg-terracotta/10 transition-colors" aria-label="Menu">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cream border-b border-sand px-4 pt-2 pb-5 space-y-2">
+            <a href="#mission" onclick="toggleMobileMenu()" class="block py-2.5 px-3 rounded-xl font-semibold text-charcoal hover:bg-sand" data-i18n="nav_mission">Our Mission</a>
+            <a href="#adopt" onclick="toggleMobileMenu()" class="block py-2.5 px-3 rounded-xl font-semibold text-charcoal hover:bg-sand" data-i18n="nav_adopt">Dogs for Adoption</a>
+            <a href="#sanctuary" onclick="toggleMobileMenu()" class="block py-2.5 px-3 rounded-xl font-semibold text-charcoal hover:bg-sand" data-i18n="nav_sanctuary">Build the Sanctuary</a>
+            <a href="#support" onclick="toggleMobileMenu()" class="block py-2.5 px-3 rounded-xl font-semibold text-charcoal hover:bg-sand" data-i18n="nav_support">Support</a>
+        </div>
+    </header>
+
+    <!-- 2. Hero Section -->
+    <section class="relative pt-10 pb-16 sm:pt-16 sm:pb-24 overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+                
+                <!-- Hero Copy -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sage-light text-sage-dark text-xs sm:text-sm font-semibold">
+                        <i class="fa-brands fa-instagram text-base"></i>
+                        <span data-i18n="hero_badge">From Street Rescues on Instagram to a Forever Haven</span>
+                    </div>
+
+                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-charcoal leading-[1.12] tracking-tight" data-i18n="hero_title">
+                        Rescuing, Rehabilitating, Building a Forever Sanctuary
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-warmgray leading-relaxed max-w-2xl mx-auto lg:mx-0" data-i18n="hero_subtitle">
+                        Every dog deserves a second chance at trust, health, and love. What started as one person rescuing abandoned street dogs and sharing their recoveries on Instagram is growing into a permanent sanctuary where the forgotten can heal—and find their forever families.
+                    </p>
+
+                    <!-- Two Clear CTAs -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#adopt" class="w-full sm:w-auto px-7 py-4 rounded-2xl bg-terracotta hover:bg-terracotta-dark text-white font-bold text-base shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2.5">
+                            <i class="fa-solid fa-heart"></i>
+                            <span data-i18n="hero_cta_adopt">Adopt a Dog</span>
+                        </a>
+                        <a href="#sanctuary" class="w-full sm:w-auto px-7 py-4 rounded-2xl bg-sage hover:bg-sage-dark text-white font-bold text-base shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2.5">
+                            <i class="fa-solid fa-house-chimney"></i>
+                            <span data-i18n="hero_cta_build">Help Build the Sanctuary</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Image Card -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative rounded-3xl overflow-hidden shadow-xl border-4 border-white aspect-[4/5] max-w-md mx-auto bg-sand">
+                        <img 
+                            src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=900&q=80" 
+                            onerror="this.src='https://placehold.co/800x1000/E7EDE4/475D3E?text=Happy+Rescue+Dogs'"
+                            alt="Happy rehabilitated rescue dogs running together" 
+                            class="w-full h-full object-cover"
+                        >
+                        <!-- Floating Story Card Overlay -->
+                        <div class="absolute bottom-4 left-4 right-4 bg-cream/95 backdrop-blur-sm p-4 rounded-2xl shadow-lg border border-sand">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-terracotta-light text-terracotta flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-shield-dog text-lg"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-bold uppercase tracking-wider text-sage-dark" data-i18n="hero_card_tag">100% Grassroots Rescue</p>
+                                    <p class="text-sm font-semibold text-charcoal" data-i18n="hero_card_text">Rehabilitated with patience, vet care & daily love.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. The Mission & Story Section -->
+    <section id="mission" class="py-16 sm:py-24 bg-sand/60 border-y border-sand">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Photo Collage / Rescuer Bond -->
+                <div class="lg:col-span-5 order-2 lg:order-1">
+                    <div class="rounded-3xl overflow-hidden shadow-lg border-4 border-white aspect-square max-w-md mx-auto bg-cream">
+                        <img 
+                            src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=900&q=80" 
+                            onerror="this.src='https://placehold.co/800x800/F7E7E2/C86D51?text=Rehabilitation+%26+Trust'"
+                            alt="Gentle rescue dog looking up with trust" 
+                            class="w-full h-full object-cover"
+                        >
+                    </div>
+                </div>
+
+                <!-- Mission Narrative & Stats -->
+                <div class="lg:col-span-7 order-1 lg:order-2 space-y-6">
+                    <span class="text-xs font-bold uppercase tracking-widest text-terracotta" data-i18n="mission_eyebrow">Our Story & Mission</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-charcoal leading-tight" data-i18n="mission_title">
+                        One Man, a Camera, and a Promise to the Dogs Nobody Wanted
+                    </h2>
+                    <div class="space-y-4 text-warmgray text-base leading-relaxed">
+                        <p data-i18n="mission_p1">
+                            It began on the streets—stopping for injured, scared, and abandoned dogs that others walked past. By documenting every vet visit, first bath, and wagging tail on Instagram, a global community rallied behind each rescue.
+                        </p>
+                        <p data-i18n="mission_p2">
+                            Now, temporary foster spaces aren't enough. Dogs recovering from trauma and medical neglect need stability, open space, and time to trust again. Our next chapter is building a dedicated sanctuary: a permanent safe haven for rehabilitation and a bridge to loving adoptive homes.
+                        </p>
+                    </div>
+
+                    <!-- Placeholder Impact Stats -->
+                    <div class="grid grid-cols-3 gap-3 sm:gap-6 pt-4">
+                        <div class="bg-cream p-4 sm:p-5 rounded-2xl border border-sand shadow-sm text-center">
+                            <span class="font-serif text-2xl sm:text-4xl font-bold text-terracotta block">45+</span>
+                            <span class="text-xs sm:text-sm font-semibold text-charcoal mt-1 block" data-i18n="stat_rescued">Dogs Rescued</span>
+                        </div>
+                        <div class="bg-cream p-4 sm:p-5 rounded-2xl border border-sand shadow-sm text-center">
+                            <span class="font-serif text-2xl sm:text-4xl font-bold text-sage-dark block">32</span>
+                            <span class="text-xs sm:text-sm font-semibold text-charcoal mt-1 block" data-i18n="stat_adopted">Rehabilitated & Adopted</span>
+                        </div>
+                        <div class="bg-cream p-4 sm:p-5 rounded-2xl border border-sand shadow-sm text-center">
+                            <span class="font-serif text-2xl sm:text-4xl font-bold text-charcoal block">62%</span>
+                            <span class="text-xs sm:text-sm font-semibold text-charcoal mt-1 block" data-i18n="stat_goal">Sanctuary Land Goal</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Dogs Looking for a Home (Adoption Showcase) -->
+    <section id="adopt" class="py-16 sm:py-24">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Heading -->
+            <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16 space-y-3">
+                <span class="text-xs font-bold uppercase tracking-widest text-sage-dark" data-i18n="adopt_eyebrow">Ready for Forever</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-charcoal" data-i18n="adopt_title">
+                    Dogs Looking for a Loving Home
+                </h2>
+                <p class="text-warmgray text-base" data-i18n="adopt_subtitle">
+                    Each of these rescues has been vaccinated, rehabilitated, and socialized. Click below to start an adoption conversation.
+                </p>
+            </div>
+
+            <!-- 3-Card Responsive Grid (Rendered dynamically via JS for seamless EN/ES switching) -->
+            <div id="dogs-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Cards injected by renderDogs() -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. The Sanctuary Vision & Ways to Help -->
+    <section id="sanctuary" class="py-16 sm:py-24 bg-charcoal text-cream rounded-t-[2.5rem] sm:rounded-t-[3.5rem]">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+            
+            <!-- Sanctuary Vision & Progress Tracker -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <div class="lg:col-span-7 space-y-5">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-terracotta/20 text-terracotta-light text-xs font-bold uppercase tracking-wider">
+                        <i class="fa-solid fa-hammer"></i>
+                        <span data-i18n="sanc_badge">The Sanctuary Project</span>
+                    </div>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white leading-tight" data-i18n="sanc_title">
+                        Help Us Build a Permanent Safe Haven
+                    </h2>
+                    <p class="text-cream/80 text-base leading-relaxed" data-i18n="sanc_desc">
+                        Renting temporary spaces limits how many lives we can save. With your support, we are securing land to build a self-sustaining sanctuary with shaded play yards, a quarantine & recovery clinic, and safe sleeping kennels.
+                    </p>
+
+                    <!-- 4 Pillars of Where Funds Go -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <div class="flex items-start gap-3.5 bg-white/5 p-4 rounded-2xl border border-white/10">
+                            <div class="w-9 h-9 rounded-xl bg-sage text-white flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-tree"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white text-sm" data-i18n="pillar1_title">Land & Secure Fencing</h3>
+                                <p class="text-xs text-cream/70 mt-1" data-i18n="pillar1_desc">Safe open space where shy dogs can run freely without danger.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3.5 bg-white/5 p-4 rounded-2xl border border-white/10">
+                            <div class="w-9 h-9 rounded-xl bg-terracotta text-white flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-stethoscope"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white text-sm" data-i18n="pillar2_title">Medical Rehab & Sterilization</h3>
+                                <p class="text-xs text-cream/70 mt-1" data-i18n="pillar2_desc">Surgeries, vaccines, tick/flea treatment, and spay/neuter care.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3.5 bg-white/5 p-4 rounded-2xl border border-white/10">
+                            <div class="w-9 h-9 rounded-xl bg-terracotta text-white flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-house"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white text-sm" data-i18n="pillar3_title">Shaded Kennels & Comfort</h3>
+                                <p class="text-xs text-cream/70 mt-1" data-i18n="pillar3_desc">Weather-protected sleeping areas, clean beds, and cooling shade.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3.5 bg-white/5 p-4 rounded-2xl border border-white/10">
+                            <div class="w-9 h-9 rounded-xl bg-sage text-white flex items-center justify-center shrink-0 mt-0.5">
+                                <i class="fa-solid fa-bowl-food"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white text-sm" data-i18n="pillar4_title">Daily Nutrition & Supplies</h3>
+                                <p class="text-xs text-cream/70 mt-1" data-i18n="pillar4_desc">High-protein kibble, supplements for malnourished rescues, and toys.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fundraising Progress Card -->
+                <div class="lg:col-span-5">
+                    <div class="bg-cream text-charcoal p-6 sm:p-8 rounded-3xl shadow-2xl space-y-6">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold uppercase tracking-wider text-sage-dark bg-sage-light px-3 py-1 rounded-full" data-i18n="fund_tag">Phase 1: Land & Fencing</span>
+                            <span class="font-serif font-bold text-xl text-terracotta">62%</span>
+                        </div>
+
+                        <div>
+                            <div class="flex items-baseline justify-between mb-2">
+                                <span class="font-serif text-3xl font-bold text-charcoal">$15,500</span>
+                                <span class="text-sm font-medium text-warmgray" data-i18n="fund_goal">raised of $25,000 goal</span>
+                            </div>
+                            <!-- Progress Bar -->
+                            <div class="w-full h-4 bg-sand rounded-full overflow-hidden p-0.5">
+                                <div class="h-full bg-gradient-to-r from-sage to-terracotta rounded-full transition-all duration-700" style="width: 62%"></div>
+                            </div>
+                        </div>
+
+                        <p class="text-sm text-warmgray leading-relaxed" data-i18n="fund_note">
+                            Every single contribution goes directly toward building materials, veterinary bills, and food. Transparency updates are posted weekly on Instagram.
+                        </p>
+
+                        <a href="#support" class="w-full py-3.5 px-6 rounded-2xl bg-charcoal hover:bg-terracotta text-white font-bold text-sm text-center block transition-colors" data-i18n="fund_cta">
+                            Choose a Way to Support
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Donation Tier Cards -->
+            <div id="support" class="pt-6 border-t border-white/10 space-y-8">
+                <div class="text-center max-w-xl mx-auto space-y-2">
+                    <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white" data-i18n="tiers_title">Make a Direct Impact Today</h3>
+                    <p class="text-sm text-cream/75" data-i18n="tiers_subtitle">Select a tier to see how your contribution helps or link your PayPal / GoFundMe / Patreon here.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Tier 1 -->
+                    <div class="bg-white/5 hover:bg-white/10 border border-white/15 rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="font-serif text-3xl font-bold text-terracotta-light">$15 <span class="text-base font-sans font-normal text-cream/60">/ €15</span></span>
+                                <div class="w-10 h-10 rounded-full bg-terracotta/20 text-terracotta-light flex items-center justify-center">
+                                    <i class="fa-solid fa-bone"></i>
+                                </div>
+                            </div>
+                            <h4 class="font-serif text-xl font-bold text-white" data-i18n="tier1_name">Food & Meds Bowl</h4>
+                            <p class="text-sm text-cream/75 leading-relaxed" data-i18n="tier1_desc">
+                                Provides nutritious meals for a recovering rescue dog for two weeks plus essential deworming and flea protection.
+                            </p>
+                        </div>
+                        <button onclick="openSupportModal('$15 / €15 — Food & Meds Bowl')" class="mt-6 w-full py-3 px-4 rounded-xl bg-white/10 hover:bg-terracotta text-white font-semibold text-sm transition-colors" data-i18n="tier_btn">
+                            Sponsor This Tier
+                        </button>
+                    </div>
+
+                    <!-- Tier 2 (Highlighted) -->
+                    <div class="bg-cream text-charcoal rounded-3xl p-6 sm:p-7 flex flex-col justify-between shadow-xl ring-4 ring-terracotta/40 relative">
+                        <span class="absolute -top-3 right-6 bg-terracotta text-white text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full" data-i18n="tier_popular">Most Needed</span>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="font-serif text-3xl font-bold text-terracotta">$50 <span class="text-base font-sans font-normal text-warmgray">/ €50</span></span>
+                                <div class="w-10 h-10 rounded-full bg-terracotta-light text-terracotta flex items-center justify-center">
+                                    <i class="fa-solid fa-heart-pulse"></i>
+                                </div>
+                            </div>
+                            <h4 class="font-serif text-xl font-bold text-charcoal" data-i18n="tier2_name">Full Rehab Care</h4>
+                            <p class="text-sm text-warmgray leading-relaxed" data-i18n="tier2_desc">
+                                Covers a complete intake vet checkup, core vaccinations, blood tests, and skin recovery treatment for a newly rescued street dog.
+                            </p>
+                        </div>
+                        <button onclick="openSupportModal('$50 / €50 — Full Rehab Care')" class="mt-6 w-full py-3.5 px-4 rounded-xl bg-terracotta hover:bg-terracotta-dark text-white font-bold text-sm shadow-md transition-colors" data-i18n="tier_btn">
+                            Sponsor This Tier
+                        </button>
+                    </div>
+
+                    <!-- Tier 3 -->
+                    <div class="bg-white/5 hover:bg-white/10 border border-white/15 rounded-3xl p-6 sm:p-7 flex flex-col justify-between transition-all">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="font-serif text-3xl font-bold text-sage-light">$100 <span class="text-base font-sans font-normal text-cream/60">/ €100</span></span>
+                                <div class="w-10 h-10 rounded-full bg-sage/30 text-sage-light flex items-center justify-center">
+                                    <i class="fa-solid fa-trowel-bricks"></i>
+                                </div>
+                            </div>
+                            <h4 class="font-serif text-xl font-bold text-white" data-i18n="tier3_name">Sanctuary Founding Brick</h4>
+                            <p class="text-sm text-cream/75 leading-relaxed" data-i18n="tier3_desc">
+                                Directly funds fencing, concrete, and shaded kennel construction—with your name painted on our Sanctuary Founders Wall.
+                            </p>
+                        </div>
+                        <button onclick="openSupportModal('$100 / €100 — Sanctuary Founding Brick')" class="mt-6 w-full py-3 px-4 rounded-xl bg-sage hover:bg-sage-dark text-white font-semibold text-sm transition-colors" data-i18n="tier_btn">
+                            Sponsor This Tier
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Instagram Community Callout Banner -->
+                <div class="bg-gradient-to-r from-terracotta to-terracotta-dark rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-lg">
+                    <div class="flex items-center gap-4 text-center md:text-left flex-col sm:flex-row">
+                        <div class="w-14 h-14 rounded-2xl bg-white/20 text-white flex items-center justify-center shrink-0 text-3xl">
+                            <i class="fa-brands fa-instagram"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-serif text-xl sm:text-2xl font-bold text-white" data-i18n="ig_title">Can't donate right now? Share our rescues!</h4>
+                            <p class="text-sm text-white/90 mt-1" data-i18n="ig_desc">Follow our daily rescue stories, reels, and sanctuary progress on Instagram. Every share helps a dog get adopted.</p>
+                        </div>
+                    </div>
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="w-full md:w-auto px-6 py-3.5 rounded-2xl bg-cream hover:bg-white text-charcoal font-bold text-sm text-center shrink-0 shadow-md transition-all flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-instagram text-terracotta text-base"></i>
+                        <span data-i18n="ig_btn">Follow @YourInstagramHandle</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 6. Footer -->
+    <footer class="bg-charcoal text-cream/70 border-t border-white/10 py-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+            <div class="space-y-1">
+                <div class="flex items-center justify-center md:justify-start gap-2 text-white font-serif font-bold text-lg">
+                    <i class="fa-solid fa-paw text-terracotta"></i>
+                    <span data-i18n="brand_name">[Sanctuary Name]</span>
+                </div>
+                <p class="text-xs text-cream/60" data-i18n="footer_note">
+                    Saving lives one street rescue at a time. Thank you for being part of their second chance.
+                </p>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-center gap-6 text-sm">
+                <a href="mailto:hello@yoursanctuary.org" class="hover:text-white transition-colors flex items-center gap-2">
+                    <i class="fa-regular fa-envelope text-terracotta"></i>
+                    <span>hello@yoursanctuary.org</span>
+                </a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors flex items-center gap-2">
+                    <i class="fa-brands fa-instagram text-terracotta"></i>
+                    <span>@YourInstagramHandle</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Adoption Inquiry Modal -->
+    <div id="adoption-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-charcoal/70 backdrop-blur-sm">
+        <div class="bg-cream text-charcoal w-full max-w-lg rounded-3xl shadow-2xl border border-sand overflow-hidden animate-[fadeIn_0.2s_ease-out]">
+            <div class="bg-sand px-6 py-4 flex items-center justify-between border-b border-charcoal/10">
+                <div class="flex items-center gap-2.5">
+                    <i class="fa-solid fa-paw text-terracotta"></i>
+                    <h3 class="font-serif font-bold text-lg text-charcoal" data-i18n="modal_adopt_title">Adoption Inquiry</h3>
+                </div>
+                <button onclick="closeAdoptionModal()" class="w-8 h-8 rounded-full bg-cream text-charcoal hover:bg-terracotta hover:text-white flex items-center justify-center transition-colors" aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form id="adoption-form" onsubmit="handleAdoptionSubmit(event)" class="p-6 space-y-4">
+                <div class="bg-sage-light/70 p-3.5 rounded-2xl flex items-center gap-3">
+                    <i class="fa-solid fa-heart text-sage-dark"></i>
+                    <p class="text-sm text-charcoal">
+                        <span data-i18n="modal_applying_for">Applying to adopt:</span>
+                        <strong id="modal-dog-name" class="text-terracotta font-bold ml-1">Mateo</strong>
+                    </p>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-warmgray mb-1" data-i18n="form_name">Your Full Name</label>
+                    <input type="text" required placeholder="Alex Rivera" class="w-full px-4 py-2.5 rounded-xl bg-white border border-sand focus:outline-none focus:border-terracotta text-sm">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-warmgray mb-1" data-i18n="form_email">Email or WhatsApp</label>
+                        <input type="text" required placeholder="alex@email.com" class="w-full px-4 py-2.5 rounded-xl bg-white border border-sand focus:outline-none focus:border-terracotta text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-warmgray mb-1" data-i18n="form_location">City & Country</label>
+                        <input type="text" required placeholder="Madrid, Spain / Austin, TX" class="w-full px-4 py-2.5 rounded-xl bg-white border border-sand focus:outline-none focus:border-terracotta text-sm">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-warmgray mb-1" data-i18n="form_about">Tell us a little about your home & lifestyle</label>
+                    <textarea rows="3" required class="w-full px-4 py-2.5 rounded-xl bg-white border border-sand focus:outline-none focus:border-terracotta text-sm" data-i18n-placeholder="form_about_ph" placeholder="Do you have a yard, other pets, or experience with rescue dogs?"></textarea>
+                </div>
+
+                <div class="pt-2 flex items-center justify-end gap-3">
+                    <button type="button" onclick="closeAdoptionModal()" class="px-5 py-2.5 rounded-xl text-sm font-semibold text-warmgray hover:bg-sand transition-colors" data-i18n="form_cancel">Cancel</button>
+                    <button type="submit" class="px-6 py-2.5 rounded-xl bg-terracotta hover:bg-terracotta-dark text-white font-bold text-sm shadow-md transition-colors" data-i18n="form_submit">Send Inquiry</button>
+                </div>
+            </form>
+
+            <!-- Confirmation Message inside Modal -->
+            <div id="adoption-success" class="hidden p-8 text-center space-y-4">
+                <div class="w-14 h-14 rounded-full bg-sage-light text-sage-dark flex items-center justify-center mx-auto text-2xl">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h4 class="font-serif text-2xl font-bold text-charcoal" data-i18n="success_title">Thank You for Opening Your Heart!</h4>
+                <p class="text-sm text-warmgray leading-relaxed" data-i18n="success_desc">
+                    (Demo Preview) In the live website, this inquiry goes straight to your email or WhatsApp so you can schedule a video call with the adopter.
+                </p>
+                <button onclick="closeAdoptionModal()" class="px-6 py-2.5 rounded-xl bg-charcoal text-white font-bold text-sm" data-i18n="success_btn">Back to Website</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Support / Donation Placeholder Modal -->
+    <div id="support-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-charcoal/70 backdrop-blur-sm">
+        <div class="bg-cream text-charcoal w-full max-w-md rounded-3xl shadow-2xl border border-sand p-6 sm:p-8 text-center space-y-5">
+            <div class="w-14 h-14 rounded-2xl bg-terracotta-light text-terracotta flex items-center justify-center mx-auto text-2xl">
+                <i class="fa-solid fa-hand-holding-heart"></i>
+            </div>
+            <div class="space-y-2">
+                <span class="text-xs font-bold uppercase tracking-wider text-sage-dark" data-i18n="sup_modal_tag">Donation Link Placeholder</span>
+                <h3 id="support-tier-title" class="font-serif text-2xl font-bold text-charcoal">$50 / €50 — Full Rehab Care</h3>
+                <p class="text-sm text-warmgray leading-relaxed" data-i18n="sup_modal_desc">
+                    When we launch your site, this button will connect directly to your PayPal, GoFundMe, Stripe, or Bizum/bank transfer details!
+                </p>
+            </div>
+            <button onclick="closeSupportModal()" class="w-full py-3 rounded-xl bg-charcoal hover:bg-terracotta text-white font-bold text-sm transition-colors" data-i18n="sup_modal_btn">
+                Got It
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript for Bilingual Toggle, Dog Cards, and Interactive Modals -->
+    <script>
+        // Current active language ('en' or 'es')
+        let currentLang = 'en';
+
+        // Dictionary containing all English and Spanish UI strings
+        const translations = {
+            en: {
+                draft_badge: "Website Concept Draft",
+                draft_note: "Placeholder names, photos & amounts — customizable with your real stories & links!",
+                brand_name: "[Sanctuary Name]",
+                nav_mission: "Our Mission",
+                nav_adopt: "Dogs for Adoption",
+                nav_sanctuary: "Build the Sanctuary",
+                nav_support: "Support",
+                hero_badge: "From Street Rescues on Instagram to a Forever Haven",
+                hero_title: "Rescuing, Rehabilitating, Building a Forever Sanctuary",
+                hero_subtitle: "Every dog deserves a second chance at trust, health, and love. What started as one person rescuing abandoned street dogs and sharing their recoveries on Instagram is growing into a permanent sanctuary where the forgotten can heal—and find their forever families.",
+                hero_cta_adopt: "Adopt a Dog",
+                hero_cta_build: "Help Build the Sanctuary",
+                hero_card_tag: "100% Grassroots Rescue",
+                hero_card_text: "Rehabilitated with patience, vet care & daily love.",
+                mission_eyebrow: "Our Story & Mission",
+                mission_title: "One Man, a Camera, and a Promise to the Dogs Nobody Wanted",
+                mission_p1: "It began on the streets—stopping for injured, scared, and abandoned dogs that others walked past. By documenting every vet visit, first bath, and wagging tail on Instagram, a global community rallied behind each rescue.",
+                mission_p2: "Now, temporary foster spaces aren't enough. Dogs recovering from trauma and medical neglect need stability, open space, and time to trust again. Our next chapter is building a dedicated sanctuary: a permanent safe haven for rehabilitation and a bridge to loving adoptive homes.",
+                stat_rescued: "Dogs Rescued",
+                stat_adopted: "Rehabilitated & Adopted",
+                stat_goal: "Sanctuary Land Goal",
+                adopt_eyebrow: "Ready for Forever",
+                adopt_title: "Dogs Looking for a Loving Home",
+                adopt_subtitle: "Each of these rescues has been vaccinated, rehabilitated, and socialized. Click below to start an adoption conversation.",
+                adopt_btn: "Inquire to Adopt",
+                sanc_badge: "The Sanctuary Project",
+                sanc_title: "Help Us Build a Permanent Safe Haven",
+                sanc_desc: "Renting temporary spaces limits how many lives we can save. With your support, we are securing land to build a self-sustaining sanctuary with shaded play yards, a quarantine & recovery clinic, and safe sleeping kennels.",
+                pillar1_title: "Land & Secure Fencing",
+                pillar1_desc: "Safe open space where shy dogs can run freely without danger.",
+                pillar2_title: "Medical Rehab & Sterilization",
+                pillar2_desc: "Surgeries, vaccines, tick/flea treatment, and spay/neuter care.",
+                pillar3_title: "Shaded Kennels & Comfort",
+                pillar3_desc: "Weather-protected sleeping areas, clean beds, and cooling shade.",
+                pillar4_title: "Daily Nutrition & Supplies",
+                pillar4_desc: "High-protein kibble, supplements for malnourished rescues, and toys.",
+                fund_tag: "Phase 1: Land & Fencing",
+                fund_goal: "raised of $25,000 goal",
+                fund_note: "Every single contribution goes directly toward building materials, veterinary bills, and food. Transparency updates are posted weekly on Instagram.",
+                fund_cta: "Choose a Way to Support",
+                tiers_title: "Make a Direct Impact Today",
+                tiers_subtitle: "Select a tier to see how your contribution helps or link your PayPal / GoFundMe / Patreon here.",
+                tier_popular: "Most Needed",
+                tier1_name: "Food & Meds Bowl",
+                tier1_desc: "Provides nutritious meals for a recovering rescue dog for two weeks plus essential deworming and flea protection.",
+                tier2_name: "Full Rehab Care",
+                tier2_desc: "Covers a complete intake vet checkup, core vaccinations, blood tests, and skin recovery treatment for a newly rescued street dog.",
+                tier3_name: "Sanctuary Founding Brick",
+                tier3_desc: "Directly funds fencing, concrete, and shaded kennel construction—with your name painted on our Sanctuary Founders Wall.",
+                tier_btn: "Sponsor This Tier",
+                ig_title: "Can't donate right now? Share our rescues!",
+                ig_desc: "Follow our daily rescue stories, reels, and sanctuary progress on Instagram. Every share helps a dog get adopted.",
+                ig_btn: "Follow @YourInstagramHandle",
+                footer_note: "Saving lives one street rescue at a time. Thank you for being part of their second chance.",
+                modal_adopt_title: "Adoption Inquiry",
+                modal_applying_for: "Applying to adopt:",
+                form_name: "Your Full Name",
+                form_email: "Email or WhatsApp",
+                form_location: "City & Country",
+                form_about: "Tell us a little about your home & lifestyle",
+                form_about_ph: "Do you have a yard, other pets, or experience with rescue dogs?",
+                form_cancel: "Cancel",
+                form_submit: "Send Inquiry",
+                success_title: "Thank You for Opening Your Heart!",
+                success_desc: "(Demo Preview) In the live website, this inquiry goes straight to your email or WhatsApp so you can schedule a video call with the adopter.",
+                success_btn: "Back to Website",
+                sup_modal_tag: "Donation Link Placeholder",
+                sup_modal_desc: "When we launch your site, this button will connect directly to your PayPal, GoFundMe, Stripe, or Bizum/bank transfer details!",
+                sup_modal_btn: "Got It"
+            },
+            es: {
+                draft_badge: "Borrador de Diseño Web",
+                draft_note: "Nombres, fotos y montos de ejemplo — ¡personalizable con tus historias y enlaces reales!",
+                brand_name: "[Nombre del Santuario]",
+                nav_mission: "Nuestra Misión",
+                nav_adopt: "En Adopción",
+                nav_sanctuary: "El Santuario",
+                nav_support: "Apoya",
+                hero_badge: "De Rescates Callejeros en Instagram a un Refugio Eterno",
+                hero_title: "Rescatando, Rehabilitando, Construyendo un Santuario para Siempre",
+                hero_subtitle: "Cada perro merece una segunda oportunidad de confiar, sanar y ser amado. Lo que comenzó rescatando perros abandonados en la calle y compartiendo su recuperación en Instagram está creciendo hacia un santuario permanente donde los olvidados puedan sanar y encontrar familia.",
+                hero_cta_adopt: "Adoptar un Perro",
+                hero_cta_build: "Ayudar a Construir el Santuario",
+                hero_card_tag: "Rescate 100% Independiente",
+                hero_card_text: "Rehabilitados con paciencia, atención veterinaria y amor diario.",
+                mission_eyebrow: "Nuestra Historia y Misión",
+                mission_title: "Un Hombre, una Cámara y una Promesa a los Perros que Nadie Quería",
+                mission_p1: "Todo empezó en las calles: deteniéndome por perros heridos, asustados y abandonados que otros ignoraban. Al documentar cada visita al veterinario, primer baño y movimiento de cola en Instagram, una comunidad solidaria se unió a cada rescate.",
+                mission_p2: "Hoy, los hogares temporales no son suficientes. Los perros que se recuperan del trauma y el abandono necesitan estabilidad, espacio abierto y tiempo para volver a confiar. Nuestro siguiente paso es construir un santuario propio: un refugio seguro para rehabilitarlos y conectarlos con familias adoptivas.",
+                stat_rescued: "Perros Rescatados",
+                stat_adopted: "Rehabilitados y Adoptados",
+                stat_goal: "Meta Terreno Santuario",
+                adopt_eyebrow: "Listos para un Hogar",
+                adopt_title: "Perros Buscando una Familia Amorosa",
+                adopt_subtitle: "Cada uno de estos rescatados está vacunado, rehabilitado y socializado. Haz clic abajo para iniciar una solicitud de adopción.",
+                adopt_btn: "Consultar Adopción",
+                sanc_badge: "El Proyecto del Santuario",
+                sanc_title: "Ayúdanos a Construir un Refugio Seguro y Permanente",
+                sanc_desc: "Alquilar espacios temporales limita cuántas vidas podemos salvar. Con tu apoyo, estamos asegurando un terreno para construir un santuario autosostenible con patios con sombra, área de recuperación médica y dormitorios seguros.",
+                pillar1_title: "Terreno y Cercado Seguro",
+                pillar1_desc: "Espacio abierto y protegido donde los perros tímidos puedan correr sin peligro.",
+                pillar2_title: "Rehabilitación Médica y Esterilización",
+                pillar2_desc: "Cirugías, vacunas, desparasitación y esterilización responsable.",
+                pillar3_title: "Caniles con Sombra y Confort",
+                pillar3_desc: "Áreas de descanso protegidas del clima, camas limpias y sombra fresca.",
+                pillar4_title: "Alimentación Diaria e Insumos",
+                pillar4_desc: "Alimento nutritivo, suplementos para perros desnutridos y juguetes.",
+                fund_tag: "Fase 1: Terreno y Cercado",
+                fund_goal: "recaudados de la meta de $25,000",
+                fund_note: "Cada aporte va directamente a materiales de construcción, gastos veterinarios y alimento. Publicamos avances transparentes cada semana en Instagram.",
+                fund_cta: "Elige Cómo Apoyar",
+                tiers_title: "Genera un Impacto Directo Hoy",
+                tiers_subtitle: "Selecciona una opción para ver cómo ayuda tu aporte o conecta aquí tu PayPal / GoFundMe / Patreon.",
+                tier_popular: "Más Necesitado",
+                tier1_name: "Plato de Comida y Medicinas",
+                tier1_desc: "Proporciona alimento nutritivo para un perro en recuperación durante dos semanas, más desparasitación esencial.",
+                tier2_name: "Rehabilitación Completa",
+                tier2_desc: "Cubre chequeo veterinario inicial, vacunas completas, análisis de sangre y tratamiento de piel para un perro recién rescatado.",
+                tier3_name: "Ladrillo Fundador del Santuario",
+                tier3_desc: "Financia directamente cercas, cemento y áreas con sombra — con tu nombre pintado en nuestro Muro de Fundadores.",
+                tier_btn: "Apoyar con Este Nivel",
+                ig_title: "¿No puedes donar ahora? ¡Comparte nuestros rescates!",
+                ig_desc: "Sigue nuestras historias diarias, reels y avances del santuario en Instagram. Cada vez que compartes, ayudas a que un perro sea adoptado.",
+                ig_btn: "Seguir a @YourInstagramHandle",
+                footer_note: "Salvando vidas un rescate a la vez. Gracias por ser parte de su segunda oportunidad.",
+                modal_adopt_title: "Consulta de Adopción",
+                modal_applying_for: "Solicitando adoptar a:",
+                form_name: "Tu Nombre Completo",
+                form_email: "Correo o WhatsApp",
+                form_location: "Ciudad y País",
+                form_about: "Cuéntanos un poco sobre tu hogar y estilo de vida",
+                form_about_ph: "¿Tienes patio, otras mascotas o experiencia con perros rescatados?",
+                form_cancel: "Cancelar",
+                form_submit: "Enviar Consulta",
+                success_title: "¡Gracias por Abrir tu Corazón!",
+                success_desc: "(Vista Previa) En la web final, esta solicitud llegará directo a tu correo o WhatsApp para coordinar una videollamada con el adoptante.",
+                success_btn: "Volver al Sitio",
+                sup_modal_tag: "Enlace de Donación (Ejemplo)",
+                sup_modal_desc: "Al publicar tu página, este botón llevará directamente a tu PayPal, GoFundMe, Stripe o datos de transferencia bancaria.",
+                sup_modal_btn: "Entendido"
+            }
+        };
+
+        // Sample Rescue Dogs Data (Bilingual)
+        const rescueDogs = [
+            {
+                name: "Mateo",
+                image: "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=800&q=80",
+                fallback: "https://placehold.co/600x600/F7E7E2/C86D51?text=Mateo",
+                age: { en: "2 Years Old • Male", es: "2 Años • Macho" },
+                tags: {
+                    en: ["Gentle Soul", "Great with Dogs", "Neutered"],
+                    es: ["Alma Noble", "Sociable con Perros", "Esterilizado"]
+                },
+                story: {
+                    en: "Found limping near a highway with severe skin allergies. After 4 months of medicated baths and patience, Mateo is healthy, playful, and loves resting his head on your lap.",
+                    es: "Encontrado cojeando cerca de una carretera con alergias severas en la piel. Tras 4 meses de baños medicados y paciencia, Mateo está sano, juguetón y ama apoyar su cabeza en tus piernas."
+                }
+            },
+            {
+                name: "Luna",
+                image: "https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=800&q=80",
+                fallback: "https://placehold.co/600x600/E7EDE4/475D3E?text=Luna",
+                age: { en: "1.5 Years Old • Female", es: "1.5 Años • Hembra" },
+                tags: {
+                    en: ["Affectionate", "Leash Trained", "Vaccinated"],
+                    es: ["Muy Cariñosa", "Camina con Correa", "Vacunada"]
+                },
+                story: {
+                    en: "Rescued from an abandoned lot where she was too scared to approach humans. Today, Luna greets every morning with full-body tail wags and adores gentle walks.",
+                    es: "Rescatada de un terreno baldío donde tenía demasiado miedo de acercarse a las personas. Hoy, Luna saluda cada mañana moviendo toda la cola y adora los paseos tranquilos."
+                }
+            },
+            {
+                name: "Bruno",
+                image: "https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=800&q=80",
+                fallback: "https://placehold.co/600x600/F2EAE0/2C2A29?text=Bruno",
+                age: { en: "4 Years Old • Male", es: "4 Años • Macho" },
+                tags: {
+                    en: ["Calm & Loyal", "House Trained", "Special Senior"],
+                    es: ["Tranquilo y Leal", "Educado en Casa", "Compañero Fiel"]
+                },
+                story: {
+                    en: "Left behind when his previous owners moved away. Bruno is a calm, deeply loyal companion who thrives in a peaceful home where he can nap in the sun.",
+                    es: "Dejado atrás cuando sus antiguos dueños se mudaron. Bruno es un compañero tranquilo y profundamente leal que disfruta de un hogar apacible donde dormir al sol."
+                }
+            }
+        ];
+
+        // Render the 3 Adoption Cards in the selected language
+        function renderDogs() {
+            const grid = document.getElementById('dogs-grid');
+            const adoptBtnText = translations[currentLang].adopt_btn;
+
+            grid.innerHTML = rescueDogs.map(dog => `
+                <article class="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl border border-sand flex flex-col justify-between transition-all duration-300 group">
+                    <div>
+                        <div class="relative aspect-[4/3] overflow-hidden bg-sand">
+                            <img 
+                                src="${dog.image}" 
+                                onerror="this.src='${dog.fallback}'"
+                                alt="${dog.name}" 
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            >
+                            <span class="absolute top-3.5 left-3.5 bg-cream/95 backdrop-blur-sm text-charcoal text-xs font-bold px-3 py-1.5 rounded-full shadow-sm">
+                                ${dog.age[currentLang]}
+                            </span>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <div class="flex items-center justify-between">
+                                <h3 class="font-serif text-2xl font-bold text-charcoal">${dog.name}</h3>
+                                <i class="fa-solid fa-heart text-terracotta/30 group-hover:text-terracotta transition-colors"></i>
+                            </div>
+                            
+                            <!-- Personality Tags -->
+                            <div class="flex flex-wrap gap-1.5">
+                                ${dog.tags[currentLang].map(tag => `
+                                    <span class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-sage-light text-sage-dark">
+                                        ${tag}
+                                    </span>
+                                `).join('')}
+                            </div>
+
+                            <!-- Rehab Story -->
+                            <p class="text-sm text-warmgray leading-relaxed">
+                                ${dog.story[currentLang]}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="px-6 pb-6 pt-2">
+                        <button 
+                            onclick="openAdoptionModal('${dog.name}')" 
+                            class="w-full py-3.5 px-5 rounded-2xl bg-terracotta-light hover:bg-terracotta text-terracotta-dark hover:text-white font-bold text-sm transition-colors flex items-center justify-center gap-2"
+                        >
+                            <i class="fa-solid fa-paw"></i>
+                            <span>${adoptBtnText}</span>
+                        </button>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        // Switch Language between English ('en') and Spanish ('es')
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+
+            // Update Toggle Pill Styling
+            const btnEn = document.getElementById('btn-en');
+            const btnEs = document.getElementById('btn-es');
+
+            if (lang === 'en') {
+                btnEn.className = "px-3 py-1.5 rounded-full text-xs font-bold transition-all bg-charcoal text-cream shadow-sm";
+                btnEs.className = "px-3 py-1.5 rounded-full text-xs font-bold transition-all text-warmgray hover:text-charcoal";
+            } else {
+                btnEs.className = "px-3 py-1.5 rounded-full text-xs font-bold transition-all bg-charcoal text-cream shadow-sm";
+                btnEn.className = "px-3 py-1.5 rounded-full text-xs font-bold transition-all text-warmgray hover:text-charcoal";
+            }
+
+            // Translate all elements with data-i18n attribute
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+
+            // Translate placeholders
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (translations[lang][key]) {
+                    el.placeholder = translations[lang][key];
+                }
+            });
+
+            // Re-render dog cards in selected language
+            renderDogs();
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Adoption Modal Functions
+        function openAdoptionModal(dogName) {
+            document.getElementById('modal-dog-name').textContent = dogName;
+            document.getElementById('adoption-form').classList.remove('hidden');
+            document.getElementById('adoption-success').classList.add('hidden');
+            document.getElementById('adoption-form').reset();
+
+            const modal = document.getElementById('adoption-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeAdoptionModal() {
+            const modal = document.getElementById('adoption-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function handleAdoptionSubmit(event) {
+            event.preventDefault();
+            document.getElementById('adoption-form').classList.add('hidden');
+            document.getElementById('adoption-success').classList.remove('hidden');
+        }
+
+        // Support Tier Modal Functions
+        function openSupportModal(tierLabel) {
+            document.getElementById('support-tier-title').textContent = tierLabel;
+            const modal = document.getElementById('support-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeSupportModal() {
+            const modal = document.getElementById('support-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Close modals when clicking outside the card
+        window.addEventListener('click', (e) => {
+            const adoptModal = document.getElementById('adoption-modal');
+            const supportModal = document.getElementById('support-modal');
+            if (e.target === adoptModal) closeAdoptionModal();
+            if (e.target === supportModal) closeSupportModal();
+        });
+
+        // Initialize page content on load
+        document.addEventListener('DOMContentLoaded', () => {
+            renderDogs();
+        });
+    </script>
+</body>
+</html>
